@@ -18,7 +18,7 @@ $(document).ready(function() {
 		}
 		// ajout du message dans la fenetre					
 		$('#chat ul.'+side).last().append('<li><p class="message-wrapper m-a-0 '+side+'" data-author="'+author+'"><span class="message">'+msg+'</span></p></li>');
-		// pour chaque liste, ajouter une avatar
+		// pour chaque liste, ajouter un avatar
 		$.each($('#chat ul.'+side).find('li:first').find('p'), function(index, val) {
 			if(!$(this).find('span.name').length){
 				$('#chat ul.'+side).find('li:first').find('p').prepend('<span   data-toggle="tooltip" data-placement="'+realSide+'" title="'+author+'"  class="name">'+author.charAt(0)+'</span>');	
@@ -44,7 +44,7 @@ $(document).ready(function() {
 			    newMsg = data.split('+');
 			    id= newMsg[2];
 			    render("self",newMsg[0],newMsg[1]);
-			    $('textarea').val('').focus();
+			    message.innerHTML = "";
 		    });
 		}
 		
@@ -83,7 +83,4 @@ $(document).ready(function() {
 	    	}
 	    }
 	});
-	
-//-- end of file --
-	
 });

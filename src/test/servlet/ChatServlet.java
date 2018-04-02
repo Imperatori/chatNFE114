@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import test.models.Message;
 
 public class ChatServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
 	ArrayList<Message> msgs = new ArrayList<Message>();
 	String msg;
 	String author;
@@ -32,7 +34,6 @@ public class ChatServlet extends HttpServlet {
 			// on parcours le array
 			if (num < msgs.size()) {
 				String author, content;
-				int id;
 				for (int i = num; i < msgs.size(); i++) {
 					author = ((Message) msgs.get(i)).getAuthor();
 					content = ((Message) msgs.get(i)).getContent();

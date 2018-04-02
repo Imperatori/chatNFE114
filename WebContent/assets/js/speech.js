@@ -72,7 +72,7 @@ showInfo('info_start');
 
 function updateCountry() {
   for (var i = select_dialect.options.length - 1; i >= 0; i--) {
-    select_dialect.remove(i);
+    select_dialect.remove(i); 
   }
   var list = langs[select_language.selectedIndex];
   for (var i = 1; i < list.length; i++) {
@@ -86,12 +86,13 @@ var final_transcript = '';
 var recognizing = false;
 var ignore_onend;
 var start_timestamp;
+// vérifier si l'api est supportée par le navigateur (en l'occurence, Chrome version 25 ou plus).
 if (!('webkitSpeechRecognition' in window)) {
   upgrade();
 } else {
   start_button.style.display = 'inline-block';
   var recognition = new webkitSpeechRecognition();
-  recognition.continuous = true;
+  recognition.continuous = false;
   recognition.interimResults = true;
 
   recognition.onstart = function() {
@@ -135,7 +136,6 @@ if (!('webkitSpeechRecognition' in window)) {
     if (window.getSelection) {
       window.getSelection().removeAllRanges();
       var range = document.createRange();
-      range.selectNode(document.getElementById('final_span'));
       window.getSelection().addRange(range);
     }
   };
@@ -183,7 +183,6 @@ function startButton(event) {
   recognition.lang = select_dialect.value;
   recognition.start();
   ignore_onend = false;
-  final_span.innerHTML = '';
   interim_span.innerHTML = '';
   start_img.src = 'assets/img/mic-slash.gif';
   showInfo('info_allow');
